@@ -1,20 +1,27 @@
 import React from 'react';
 import './Contact.css';
+import PropTypes from 'prop-types';
 
-const Contact = () => (
+const Contact = (props) => (
     <div className= 'Contact'>
 
-        <img className= 'avatar' src = 'https://randomuser.me/api/portraits/men/77.jpg' alt=''/>
+        <img className= 'avatar' src = {props.avatar} alt=''/>
 
         <div>
-            <h4 className= 'name'>Samuel Soto</h4>
+            <h4 className= 'name'>{props.name}</h4>
             <div className= 'status'>
-                <div className= 'status-online'></div>
-                <p className='status-text'>online</p>
+                <div className= {props.online === true ? 'status-online' : 'status-offline'}></div>
+                <p className='status-text'>{props.online === true? 'online' : 'offline' }</p>
             </div>
         </div>
            
     </div>
 )
+
+Contact.propTypes = {
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    online: PropTypes.bool.isRequired
+}
 
 export default Contact;
